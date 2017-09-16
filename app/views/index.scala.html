@@ -7,29 +7,77 @@
   <link rel="stylesheet" href="/assets/stylesheets/chat.css">
 </head>
 
-<body ng-app="chatApp" ng-controller="chatController" layout="row" layout-align="center stretch">
+<body ng-app="chatApp" ng-controller="chatController" layout="row" layout-align="center stretch" )>
 
-  <md-card flex="none" layout="column">
-      <md-content flex="90" id="message-pane" style="width: 800px; background: url(https://media.giphy.com/media/xT9IgAeSyXeoPNB9hS/giphy.gif);
+    <style>
+/*body {
+    background-color: #2C3539 ; https://media.giphy.com/media/4eYs1rhfW8jTy/giphy.gif
+}
+*/
+</style>
+
+
+
+
+ <md-card flex="none" layout="column">
+      <md-content flex="90" id="message-pane" style="width: 700px; background: url(http://7-themes.com/data_images/out/38/6898663-beautiful-cosmos-wallpaper.jpg);
       background-repeat:no-repeat;
       background-size:cover;
       background-position:center">
+     
+      <div ng-repeat="message in messages" layout="column" layout-align="{{message.sender=='BOT' ? 'start start' : 'start end'}}">
+       
+       <md-card style="max-width: 75% ;border-radius: 10px; padding: 10px; font-size: 14px;"  ng-style="message.sender=='BOT' ?
+       {'background-color': '#FFFFFF '} :
+       {'background-color': '#FFFF00 '}">
+       <span>{{message.text}}</span>
+       <span ng-bind-html="trust(message.feedResponse.description)">{{message.feedResponse.description}}</span>
+       <span layout-align="end end" style="margin-top: 4px; float: right; color: #666666 ; font-size: 10px;"> {{message.time}} </span>
+     </md-card>
+     </div>    
+
+
+
+     <style>
+body {
+    background-image: url(https://media.giphy.com/media/suqrPA1XxYjrq/giphy.gif) ;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size: contain;
+
+}
+</style>
+
+
+
 
 
       </md-content>
-      <md-card flex="10" style="margin: 0px" layout="row" layout-align="space-between center" class="md-whiteframe-8dp">
+      <md-card flex="10" style="margin: 0px" layout="row" layout-align="space-between center" class="md-whiteframe-8dp"
+      
+                               
+       
+
            <form flex="90" ng-submit="sendMessage()" layout="row">
               <md-input-container flex="100">
                   <label>Message</label>
                   <input ng-model="userMessage">
               </md-input-container>
+
+              
+              
+
+
+
+
+
           </form>
           <md-button flex="10" style="height: 100%; padding: 0px " class="md-icon-button " ng-click="sendMessage() ">
               <md-icon style="height: 100%; padding: 0px; " md-svg-icon="/assets/images/ic_chat_48px.svg"></md-icon>
           </md-button>
       </md-card>
   </md-card>
-  <!-- Scripts -->
+  <!-- Scripts     url(https://media.giphy.com/media/xT9IgAeSyXeoPNB9hS5/giphy.gif); -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
